@@ -2,6 +2,7 @@ package ftracker
 
 import (
 	"fmt"
+	"math"
 )
 
 // Основные константы, необходимые для расчетов.
@@ -104,7 +105,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	var heightInM = height / 100.0
 	var speedInM = meanSpeed(action, duration) * kmhInMsec
 	a := (walkingCaloriesWeightMultiplier*weight +
-		((speedInM*speedInM)/heightInM)*walkingSpeedHeightMultiplier*weight) * duration * minInH
+		(math.Pow(speedInM, 2)/heightInM)*walkingSpeedHeightMultiplier*weight) * duration * minInH
 
 	return a
 	// ваш код здесь
